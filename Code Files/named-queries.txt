@@ -1,0 +1,7 @@
+--all statements are placed on the relevent items within the named queries section of the ignition designer
+
+--insert member
+INSERT INTO members (Address,CCard,FName,Mobile) VALUES (:Address, :CCard, :FName, :Mobile)
+
+--select members
+SELECT * FROM Members ORDER BY FName ASC, MemberID ASC
