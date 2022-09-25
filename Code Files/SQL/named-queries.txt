@@ -6,6 +6,9 @@ DELETE FROM inventory WHERE ItemID = :ItemID
 --delete member
 DELETE FROM members WHERE MemberID = :MemberID 
 
+--delete sale
+DELETE FROM sales WHERE ItemID = :ItemID
+
 --insert inventory
 INSERT INTO inventory (Name,Price,Stock_Quantity) VALUES (:Name, :Price, :Stock_Quantity)
 
