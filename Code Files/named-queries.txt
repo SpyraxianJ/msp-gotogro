@@ -1,7 +1,19 @@
 --all statements are placed on the relevent items within the named queries section of the ignition designer
 
+--delete inventory
+DELETE FROM inventory WHERE ItemID = :ItemID
+
+--delete member
+DELETE FROM members WHERE MemberID = :MemberID 
+
+--insert inventory
+INSERT INTO inventory (Name,Price,Stock_Quantity) VALUES (:Name, :Price, :Stock_Quantity)
+
 --insert member
 INSERT INTO members (Address,CCard,FName,Mobile) VALUES (:Address, :CCard, :FName, :Mobile)
+
+--select inventory
+SELECT * FROM Inventory ORDER BY ItemID ASC
 
 --select members
 SELECT * FROM Members ORDER BY FName ASC, MemberID ASC
