@@ -19,7 +19,7 @@ else:
 	except:
 		system.gui.messageBox('failed insert')
                
-    
+     
 #Delete Item Button
 #scripting on the delete item button action performed event
 table = event.source.parent.getComponent('Power Table') 
@@ -32,6 +32,11 @@ if table.selectedRow != -1:
     system.db.runNamedQuery("select inventory")
 else:  
 	system.gui.messageBox('failed delete')
+    
+#clear Button
+event.source.parent.getComponent('Name').text = ''
+event.source.parent.getComponent('Price').text = ''
+event.source.parent.getComponent('Stock_Quantity').text = ''
 
 
 #table 

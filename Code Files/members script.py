@@ -34,6 +34,12 @@ if table.selectedRow != -1:
 else:  
 	system.gui.messageBox('failed insert')
     
+#Clear Button
+event.source.parent.getComponent('Address').text = ''
+event.source.parent.getComponent('FName').text = ''
+event.source.parent.getComponent('CCard').text = ''
+event.source.parent.getComponent('Mobile').text = ''
+event.source.parent.getComponent('MemberID').text = ''
 
 #table
 #SQL statement that run on the table every polling rate interval
