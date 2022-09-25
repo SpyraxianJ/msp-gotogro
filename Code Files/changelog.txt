@@ -1,0 +1,24 @@
+day	Change log
+1	
+-	Created rough layout of member’s page
+-	Non functional tab strip to navigate to other pages 
+-	Functionality to add a member to database
+-	Setup both ignition server and MySQL server in an Azure VM
+2	
+-	Created rough layout of inventory page
+-	Added functionality for adding inventory items to database
+-	Made named SQL queries to simplify database entry process
+-	Added ability to delete records from database
+-	Made better navigation buttons
+3	
+-	Added clear current input button to both members and inventory pages
+-	Reformatted both UI for members and inventory
+-	Added timestamps for all entries
+4	
+-	Reformatted both members and inventory again
+-	Can now add, delete and update members/inventory items to both inventory and members
+-	Added error checking for bad inputs or failed queries
+5	
+-	Made a POS page
+-	Can add sales to database based on ItemID and quantity inputs
+-	Can delete a sales record based on selected itemID-	

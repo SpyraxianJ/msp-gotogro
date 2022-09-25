@@ -12,8 +12,17 @@ INSERT INTO inventory (Name,Price,Stock_Quantity) VALUES (:Name, :Price, :Stock_
 --insert member
 INSERT INTO members (Address,CCard,FName,Mobile) VALUES (:Address, :CCard, :FName, :Mobile)
 
+--insert sale
+INSERT INTO sales (ItemID,MemberID,Quantity) VALUES (:ItemID, :MemberID, :Quantity)
+
 --select inventory
 SELECT * FROM Inventory ORDER BY ItemID ASC
 
 --select members
 SELECT * FROM Members ORDER BY FName ASC, MemberID ASC
+
+--update inventory
+UPDATE inventory SET Name = :Name, Price = :Price, Stock_Quantity = :Stock_Quantity WHERE ItemID = :ItemID
+
+--update member
+UPDATE Members SET Address = :Address, CCard = :CCard, FName = :FName, Mobile = :Mobile WHERE MemberID = :MemberID
