@@ -1,0 +1,16 @@
+General UI
+Make the UI look nicer
+
+Inventory UI
+Clear button too close to input fields
+Edit Qty button incorrectly named
+Delete button needs to have a popup to make sure they don't accidentally delete the item
+Category for the item table
+
+Member UI
+Remove CCard details column from member table
+Add email column to member table
+Delete button needs to have a popup to make sure they don't accidentally delete the user
+
+POS UI
+Confrim sale button not working correctly
