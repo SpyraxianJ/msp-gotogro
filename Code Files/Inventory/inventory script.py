@@ -63,11 +63,12 @@ else:
 table = event.source.parent.getComponent('Power Table') 
 
 if table.selectedRow != -1:
- 
+
     ItemID = table.data.getValueAt(table.selectedRow, "ItemID")
-    system.db.runNamedQuery("delete inventory",{"ItemID":ItemID})
     
-    system.db.runNamedQuery("select inventory")
+    if system.gui.confirm('Delete Item?'):
+   		system.db.runNamedQuery("delete inventory",{"ItemID":ItemID})
+    
 else:  
 	system.gui.messageBox('failed delete')
     

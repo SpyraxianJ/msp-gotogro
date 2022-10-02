@@ -13,7 +13,7 @@ DELETE FROM sales WHERE ItemID = :ItemID
 INSERT INTO inventory (Name,Price,Stock_Quantity) VALUES (:Name, :Price, :Stock_Quantity)
 
 --insert member
-INSERT INTO members (Address,CCard,FName,Mobile) VALUES (:Address, :CCard, :FName, :Mobile)
+INSERT INTO members (Address,Email,FName,Mobile) VALUES (:Address, :Email, :FName, :Mobile)
 
 --insert sale
 INSERT INTO sales (ItemID,MemberID,Quantity) VALUES (:ItemID, :MemberID, :Quantity)
@@ -28,4 +28,4 @@ SELECT * FROM Members ORDER BY FName ASC, MemberID ASC
 UPDATE inventory SET Name = :Name, Price = :Price, Stock_Quantity = :Stock_Quantity WHERE ItemID = :ItemID
 
 --update member
-UPDATE Members SET Address = :Address, CCard = :CCard, FName = :FName, Mobile = :Mobile WHERE MemberID = :MemberID
+UPDATE Members SET Address = :Address, Email = :Email, FName = :FName, Mobile = :Mobile WHERE MemberID = :MemberID
