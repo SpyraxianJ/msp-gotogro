@@ -1,0 +1,2 @@
+- inventory can go negative after a sale
+- no checking if a memberID is in the members table from POS

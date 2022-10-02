@@ -22,3 +22,19 @@ day	Change log
 -	Made a POS page
 -	Can add sales to database based on ItemID and quantity inputs
 -	Can delete a sales record based on selected itemID-	
+6
+-	Added confirmations to delete members
+-	Added confirmations to delete items
+-	regex for member input (using formated text field with regex.  no scripting changes)
+-	changed edit item button text
+- 	changed member table value CCard to Email. affects SQL data based and named queiries for members
+7
+-	search functionality for items
+-	regex for inventory
+- 	changed number format for mobile in members
+8
+-	search functionality for member
+-	sales entry table only show items from current order
+9
+-	sales entry changing inventory stock numbers
+- 	added total price calulation to POS
