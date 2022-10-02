@@ -94,9 +94,8 @@ event.source.parent.getComponent('Address').committedValue = ''
 
 #table
 #SQL statement that run on the table every polling rate interval
-"SELECT MemberID, FName, Address, Email, Mobile, lastUpdated FROM Members ORDER BY FName ASC, MemberID ASC"
-
-table.pollingRate = 5
+"SELECT MemberID, FName, Address, Email, Mobile, lastUpdated FROM Members WHERE MemberID LIKE '%{Root Container.Group.Search.text}'ORDER BY FName ASC, MemberID ASC"
+table.pollingRate = 1
 
 #regex used on text field
 
