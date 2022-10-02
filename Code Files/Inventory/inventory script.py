@@ -33,7 +33,6 @@ else:
 		except:
 			system.gui.messageBox('failed insert')
             
-            
 #Edit Item Button
 #scripting on the edit item button action performed event
 table = event.source.parent.getComponent('Power Table')
@@ -76,9 +75,15 @@ else:
 event.source.parent.getComponent('Name').text = ''
 event.source.parent.getComponent('Price').text = ''
 event.source.parent.getComponent('Stock_Quantity').text = ''
+event.source.parent.getComponent('Group').getComponent('Search').text = ''
 
 
 #table 
 #SQL statement that run on the table every polling rate interval
-'SELECT * FROM inventory'
-table.pollingRate = 5
+'SELECT * FROM inventory WHERE ItemID LIKE '%{Root Container.Group.Search.text}'ORDER BY Name ASC'
+table.pollingRate = 1
+
+#regex
+name = '/\b([a-z]+)\b/gi'
+price = r'^([\s\d]+)$'
+stock = r'^([\s\d]+)$'
