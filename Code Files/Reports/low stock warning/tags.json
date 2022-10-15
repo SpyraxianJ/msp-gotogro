@@ -1,0 +1,10 @@
+{
+  "valueSource": "db",
+  "dataType": "Int4",
+  "datasource": "gotogro",
+  "query": "select Stock_Quantity from inventory where Stock_Quantity \u003c {[.]Stock_Warning_Limit} ",
+  "name": "Low_Stock_Check",
+  "executionMode": "FixedRate",
+  "tagType": "AtomicTag",
+  "queryType": "Select"
+}

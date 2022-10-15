@@ -1,0 +1,11 @@
+4 tags created (tags a like global variables for the project)
+
+1. "Stock_Warning_Limit" which holds a static number value. currently set to 10
+
+2. "Low_Stock_Check" that returns the result of "select Stock_Quantity from inventory where Stock_Quantity < {[.]Stock_Warning_Limit}"
+	if this returns a value it is below 10 stock  
+
+3. "Low_Stock_Alarm" that returns 1 if there is low stock detected above
+	whenever this tag changes value another script is called that will open a popup window. 
+
+4. "Low_Stock_Dataset" that just stores "select ItemID,Name,Stock_Quantity from inventory where Stock_Quantity < {[.]Stock_Warning_Limit} " as a dataset that is printed on the popup window
