@@ -1,0 +1,58 @@
+<?xml version="1.0" ?>
+<sample-data>
+	<!--This is the raw data used to create the report preview.-->
+	<Report>
+		<Gateway>GotoGro-MRM</Gateway>
+		<Name>Sales Report</Name>
+		<Path>Sales Report</Path>
+		<Timestamp>2022-10-15 15:08:46.300</Timestamp>
+	</Report>
+	<now>2022-10-15 15:08:46.300</now>
+	<query>
+		<row-0>
+			<MemberID>69</MemberID>
+			<ItemID>15</ItemID>
+			<t_stamp>2022-02-25 20:47:54.000</t_stamp>
+			<quantity>3</quantity>
+		</row-0>
+		<row-1>
+			<MemberID>69</MemberID>
+			<ItemID>25</ItemID>
+			<t_stamp>2022-02-08 17:43:45.000</t_stamp>
+			<quantity>3</quantity>
+		</row-1>
+		<row-2>
+			<MemberID>69</MemberID>
+			<ItemID>31</ItemID>
+			<t_stamp>2022-01-07 13:41:04.000</t_stamp>
+			<quantity>2</quantity>
+		</row-2>
+		<row-3>
+			<MemberID>69</MemberID>
+			<ItemID>44</ItemID>
+			<t_stamp>2022-09-22 12:52:36.000</t_stamp>
+			<quantity>2</quantity>
+		</row-3>
+		<row-4>
+			<MemberID>69</MemberID>
+			<ItemID>58</ItemID>
+			<t_stamp>2022-09-10 14:30:25.000</t_stamp>
+			<quantity>3</quantity>
+		</row-4>
+		<row-5>
+			<MemberID>69</MemberID>
+			<ItemID>64</ItemID>
+			<t_stamp>2022-03-11 05:07:56.000</t_stamp>
+			<quantity>2</quantity>
+		</row-5>
+		<row-6>
+			<MemberID>69</MemberID>
+			<ItemID>74</ItemID>
+			<t_stamp>2022-03-13 09:23:14.000</t_stamp>
+			<quantity>2</quantity>
+		</row-6>
+	</query>
+	<selectedEndDate>2022-10-13 22:50:20.488</selectedEndDate>
+	<selectedMemberID>69</selectedMemberID>
+	<selectedStartDate>2021-07-06 17:50:13.791</selectedStartDate>
+</sample-data>
