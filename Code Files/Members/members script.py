@@ -1,46 +1,61 @@
 #Save User Button
 #scripting on the save user button action performed event
+import re
+
 Address = event.source.parent.getComponent('Address').text
 FName = event.source.parent.getComponent('FName').text
 Email = event.source.parent.getComponent('Email').text
 Mobile = event.source.parent.getComponent('Mobile').text
 MemberID = event.source.parent.getComponent('MemberID').text
 
+Email_regex = re.compile('\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
+Address_regex = re.compile('\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}')
+FName_regex = re.compile(r'^[a-zA-Z ]+$')
+Mobile_regex = re.compile('^[0-9]*$')
+
+emailCheck = Email_regex.search(Email)
+print not Email_regex.search(Email)
+addressCheck = Address_regex.search(Address)
+print not Address_regex.search(Address)
+fnameCheck = FName_regex.search(FName)
+print FName_regex.search(FName)
+mobileCheck = Mobile_regex.search(Mobile)
+print Mobile_regex.search(Mobile)
+
+#check for blank inputs
 if FName == '' or Address == '' or Email == '' or Mobile == '':
 	system.gui.messageBox('Please complete all fields')
-else:
-	sel_qry = "SELECT MemberID, FName, Address, Email, Mobile FROM Members WHERE MemberID = '%s'"
-	result = system.db.runQuery(sel_qry % str(MemberID))
-	if len(result) > 0:
-		if system.gui.confirm('Update details for MemberID %s?' % MemberID):
-			try:
-				##update query
-				system.db.runNamedQuery("update member",{"Address":Address,"Email":Email,"FName" :FName, "Mobile" :Mobile, "MemberID" :MemberID})
+#check for regex compliance
+elif not emailCheck and not addressCheck and not fnameCheck and not mobileCheck:
+		sel_qry = "SELECT MemberID, FName, Address, Email, Mobile FROM Members WHERE MemberID = '%s'"
+		result = system.db.runQuery(sel_qry % str(MemberID))
+		if len(result) > 0:
+			if system.gui.confirm('Update details for MemberID %s?' % MemberID):
+				try:
+					##update query
+					system.db.runNamedQuery("update member",{"Address":Address,"Email":Email,"FName" :FName, "Mobile" :Mobile, "MemberID" :MemberID})
 				
+					event.source.parent.getComponent('Address').text = ''
+					event.source.parent.getComponent('FName').text = ''
+					event.source.parent.getComponent('Email').text = ''
+					event.source.parent.getComponent('Email').text = ''
+					event.source.parent.getComponent('Mobile').text = ''
+					event.source.parent.getComponent('MemberID').text = ''
+				except:
+					system.gui.messageBox('failed to update user')
+		else:
+			try:
+				system.db.runNamedQuery("insert member",{"Address":Address,"Email":Email,"FName" :FName, "Mobile" :Mobile})
+							
 				event.source.parent.getComponent('Address').text = ''
 				event.source.parent.getComponent('FName').text = ''
 				event.source.parent.getComponent('Email').text = ''
-				event.source.parent.getComponent('Email').text = ''
 				event.source.parent.getComponent('Mobile').text = ''
-				event.source.parent.getComponent('MemberID').text = ''
-				event.source.parent.getComponent('Email').committedValue = ''
-				event.source.parent.getComponent('Address').committedValue = ''
-				system.db.runNamedQuery("select members")
+
 			except:
-				system.gui.messageBox('failed to update user')
-	else:
-		try:
-			system.db.runNamedQuery("insert member",{"Address":Address,"Email":Email,"FName" :FName, "Mobile" :Mobile})
-							
-			event.source.parent.getComponent('Address').text = ''
-			event.source.parent.getComponent('FName').text = ''
-			event.source.parent.getComponent('Email').text = ''
-			event.source.parent.getComponent('Mobile').text = ''
-			event.source.parent.getComponent('Email').committedValue = ''
-			event.source.parent.getComponent('Address').committedValue = ''
-			system.db.runNamedQuery("select members")
-		except:
-			system.gui.messageBox('failed insert')
+				system.gui.messageBox('failed to insert new member')
+else:
+	system.gui.messageBox("Incorrect Formatting.\n")
 
 
 #Edit User Button
