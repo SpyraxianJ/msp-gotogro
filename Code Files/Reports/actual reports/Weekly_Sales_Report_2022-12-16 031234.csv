@@ -1,0 +1,8 @@
+"ID","Product","Price","Quantity Sold","Remaining Stock","%"
+"1","Goldschalger","1","22","31","70.97"
+"39","Corn Meal","10.41","1","341","0.29"
+"40","Guava","14.6","1","921","0.11"
+"94","Truffle Paste","3.23","3","696","0.43"
+"","","",""
+"ID","Product","Reccomended Stock Purchse"
+"1","Goldschalger","25"
