@@ -8,25 +8,22 @@ Email = event.source.parent.getComponent('Email').text
 Mobile = event.source.parent.getComponent('Mobile').text
 MemberID = event.source.parent.getComponent('MemberID').text
 
-Email_regex = re.compile('\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b')
-Address_regex = re.compile('\d{1,3}.?\d{0,3}\s[a-zA-Z]{2,30}\s[a-zA-Z]{2,15}')
-FName_regex = re.compile(r'^[a-zA-Z ]+$')
-Mobile_regex = re.compile('^[0-9]*$')
+#result = re.search(pattern, target_string)
+emailCheck = re.match(r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b', Email)
+addressCheck = re.match(r'^\d+\s[A-z]+\s[A-z]+', Address)
+fnameCheck = re.match(r'^[^0-9]+$', FName)
+mobileCheck = re.match(r'\d{10}', Mobile)
 
-emailCheck = Email_regex.search(Email)
-print not Email_regex.search(Email)
-addressCheck = Address_regex.search(Address)
-print not Address_regex.search(Address)
-fnameCheck = FName_regex.search(FName)
-print FName_regex.search(FName)
-mobileCheck = Mobile_regex.search(Mobile)
-print Mobile_regex.search(Mobile)
+print(emailCheck) 
+print(addressCheck) 
+print(fnameCheck) 
+print(mobileCheck) 
 
 #check for blank inputs
 if FName == '' or Address == '' or Email == '' or Mobile == '':
 	system.gui.messageBox('Please complete all fields')
 #check for regex compliance
-elif not emailCheck and not addressCheck and not fnameCheck and not mobileCheck:
+elif emailCheck!= None and addressCheck!= None and fnameCheck!= None and mobileCheck != None:
 		sel_qry = "SELECT MemberID, FName, Address, Email, Mobile FROM Members WHERE MemberID = '%s'"
 		result = system.db.runQuery(sel_qry % str(MemberID))
 		if len(result) > 0:
@@ -61,26 +58,37 @@ else:
 #Edit User Button
 #scripting on the edit user button action performed event
 table = event.source.parent.getComponent('Power Table')
-
-if table.selectedRow != -1:
-	
-	FName = table.data.getValueAt(table.selectedRow, "FName")
-	Address = table.data.getValueAt(table.selectedRow, "Address")
-	Email = table.data.getValueAt(table.selectedRow, "Email")
-	Mobile = table.data.getValueAt(table.selectedRow, "Mobile")
-	MemberID = table.data.getValueAt(table.selectedRow, "MemberID")
-	
-	str_Email = str(Email)
-	str_Mobile = str(Mobile)
-	str_MemberID = str(MemberID)
-	
-	event.source.parent.getComponent('FName').text = FName
-	event.source.parent.getComponent('Address').text = Address
-	event.source.parent.getComponent('Email').text = str_Email
-	event.source.parent.getComponent('Mobile').text = str_Mobile
-	event.source.parent.getComponent('MemberID').text = str_MemberID
-else:  
-	system.gui.messageBox("Please Select a Row!") 
+if event.source.selected == 1:
+	if table.selectedRow != -1:
+		
+		FName = table.data.getValueAt(table.selectedRow, "FName")
+		Address = table.data.getValueAt(table.selectedRow, "Address")
+		Email = table.data.getValueAt(table.selectedRow, "Email")
+		Mobile = table.data.getValueAt(table.selectedRow, "Mobile")
+		MemberID = table.data.getValueAt(table.selectedRow, "MemberID")
+		
+		str_Email = str(Email)
+		str_Mobile = str(Mobile)
+		str_MemberID = str(MemberID)
+		
+		event.source.parent.getComponent('FName').text = FName
+		event.source.parent.getComponent('Address').text = Address
+		event.source.parent.getComponent('Email').text = str_Email
+		event.source.parent.getComponent('Mobile').text = str_Mobile
+		event.source.parent.getComponent('MemberID').text = str_MemberID
+		event.source.text = "Exit Editing"
+	else:
+		event.source.selected = 0
+		system.gui.messageBox("Please Select a Row!") 
+else:
+	event.source.parent.getComponent('Address').text = ''
+	event.source.parent.getComponent('FName').text = ''
+	event.source.parent.getComponent('Email').text = ''
+	event.source.parent.getComponent('Mobile').text = ''
+	event.source.parent.getComponent('MemberID').text = ''
+	event.source.parent.getComponent('Group').getComponent('Search').text = ''
+	event.source.text = "Edit Users"
+	table.selectedRow = -1
     
 #Delete User Button
 #scripting on the delete user button action performed event

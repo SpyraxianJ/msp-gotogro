@@ -1,0 +1,38 @@
+#weekly sales table
+SELECT 
+	sales.ItemID, 
+	sales.t_stamp,
+	SUM(sales.Quantity) AS sold, 
+	inventory.Price,
+	SUM(sales.quantity * inventory.price) AS income,
+	inventory.Name,
+	inventory.stock_quantity as stock,
+	((SUM(sales.Quantity))/inventory.stock_quantity)*100 as percent_sold
+FROM sales
+JOIN inventory ON inventory.ItemID = sales.ItemID
+WHERE t_stamp BETWEEN date_sub(now(),INTERVAL 1 WEEK) AND now()
+GROUP BY sales.ItemID;
+
+# reccomendations table
+SELECT	
+percent_sold,
+sold,
+stock,
+ItemID,
+ItemName,
+ceiling(sold + (sold * 0.1)) AS Reccomendation
+FROM(
+	SELECT 
+		sales.ItemID AS ItemID, 
+		sales.t_stamp,
+		SUM(sales.Quantity) AS sold, 
+		inventory.Price,
+		SUM(sales.quantity * inventory.price) AS income,
+		inventory.Name AS ItemName,
+		inventory.stock_quantity AS stock,
+		((SUM(sales.Quantity))/inventory.stock_quantity)*100 AS percent_sold
+	FROM sales
+	JOIN inventory ON inventory.ItemID = sales.ItemID
+	WHERE t_stamp BETWEEN date_sub(now(),INTERVAL 1 WEEK) AND now()
+	GROUP BY sales.ItemID) AS weekly_sales
+WHERE percent_sold > 50;
